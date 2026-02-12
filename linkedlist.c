@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stddef.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 
@@ -27,9 +27,14 @@ int len(Node* head){
 }
 Node* add(Node* head, int data){
         /*this function adds the data in front of the list*/
-        Node newNode = {data, head};
-        head = &newNode;
-        return head;
+        Node* newNode = (Node*)malloc(sizeof(Node));
+
+        if(newNode == NULL)
+                return head;
+
+        newNode->data = data;
+        newNode->next = head;
+        return newNode;
 }
 
 
