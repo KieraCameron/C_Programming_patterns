@@ -15,6 +15,14 @@ bool isEmpty(Node* head){
         return false;
 }
 
+void display(Node* head){
+        while(head !=NULL){
+                printf("%d ", head->data);
+                head = head->next;
+        }
+        return;
+}
+
 int len(Node* head){
         if(isEmpty(head))
                 return -1;
@@ -37,12 +45,29 @@ Node* add(Node* head, int data){
         return newNode;
 }
 
+Node* addEnd(Node* head, int data){
+        Node* newNode = (Node*)malloc(sizeof(Node));
+        
+        if(newNode == NULL)
+                return head;
+        newNode->data = data;
+        newNode->next = NULL;
 
+        if(head == NULL)
+                return newNode;
+        Node* temp = head;
+        while(head->next != NULL){
+                head = head->next;
+        }
+        head->next = newNode;
+        return temp;
+}
 
 int main(void){
         Node new = {16, NULL};
         Node* newnode = &new;
         newnode = add(newnode, 6);
-        printf("%d\t %d", newnode->data, newnode->next->data);
+        newnode = addEnd(newnode, 17);
+        display(newnode);
         return 0;
 }
