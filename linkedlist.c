@@ -20,6 +20,7 @@ void display(Node* head){
                 printf("%d ", head->data);
                 head = head->next;
         }
+        printf("\n");
         return;
 }
 
@@ -56,11 +57,32 @@ Node* addEnd(Node* head, int data){
         if(head == NULL)
                 return newNode;
         Node* temp = head;
-        while(head->next != NULL){
-                head = head->next;
+        while(temp->next != NULL){
+                temp = temp->next;
         }
-        head->next = newNode;
-        return temp;
+        temp->next = newNode;
+        return head;
+}
+
+Node* RemoveHead(Node* head){
+        if(head == NULL)
+                return head;
+        return head->next;
+}
+
+Node* removeTail(Node* head){
+        if(head == NULL)
+                return head;
+        else if (head->next == NULL)
+                return NULL;
+
+        Node* temp = head;
+        while(temp->next->next!=NULL){
+                temp = temp->next;
+        }
+        free(temp->next);
+        temp->next = NULL;
+        return head;
 }
 
 int main(void){
@@ -68,6 +90,10 @@ int main(void){
         Node* newnode = &new;
         newnode = add(newnode, 6);
         newnode = addEnd(newnode, 17);
+        display(newnode);
+        newnode = RemoveHead(newnode);
+        display(newnode);
+        newnode = removeTail(newnode);
         display(newnode);
         return 0;
 }
