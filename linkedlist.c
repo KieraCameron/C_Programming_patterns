@@ -64,6 +64,14 @@ Node* addEnd(Node* head, int data){
         return head;
 }
 
+int getData(Node* head){
+        if(head == NULL){
+                fprintf(stderr, "Error: Null linked list provided.\n");
+                return INT_MIN;
+        }
+        return head->data;
+}
+
 Node* RemoveHead(Node* head){
         if(head == NULL)
                 return head;
@@ -124,19 +132,21 @@ Node* reverse(Node* head){
         return prev;
 }
 
-int main(void){
-        Node* newnode = NULL;
-        newnode = add(newnode, 16);
-        newnode = add(newnode, 6);
-        newnode = addEnd(newnode, 17);
-        display(newnode);
-        newnode = reverse(newnode);
-        display(newnode);
-        newnode = RemoveHead(newnode);
-        display(newnode);
-        newnode = removeTail(newnode);
-        display(newnode);
-        newnode = destroy(newnode);
-        display(newnode);
-        return 0;
-}
+//int main(void){
+//        Node* newnode = NULL;
+//        newnode = add(newnode, 16);
+//        newnode = add(newnode, 6);
+//        newnode = addEnd(newnode, 17);
+//        printf("%d", getData(newnode));
+//        display(newnode);
+//        newnode = reverse(newnode);
+//        display(newnode);
+//        newnode = RemoveHead(newnode);
+//        display(newnode);
+//        newnode = removeTail(newnode);
+//        display(newnode);
+//        newnode = destroy(newnode);
+//        display(newnode);
+//        
+//        return 0;
+//}
