@@ -19,4 +19,5 @@ Node* removeHead(Node* head);
 Node* removeTail(Node* head);
 Node* destroy(Node* head);
 Node* reverse(Node* head);
+Node* next(Node* head);
 #endif

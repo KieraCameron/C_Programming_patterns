@@ -132,6 +132,12 @@ Node* reverse(Node* head){
         return prev;
 }
 
+Node* next(Node* head){
+        if(head == NULL)
+                return NULL;
+        return head->next;
+}
+
 //int main(void){
 //        Node* newnode = NULL;
 //        newnode = add(newnode, 16);
