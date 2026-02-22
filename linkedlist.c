@@ -72,7 +72,7 @@ int getData(Node* head){
         return head->data;
 }
 
-Node* RemoveHead(Node* head){
+Node* removeHead(Node* head){
         if(head == NULL)
                 return head;
         Node* temp = head;
