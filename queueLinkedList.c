@@ -23,13 +23,18 @@ int frontData(Queue* q){
         return getData(q->front);
 }
 
+Node* createNode(int data){
+        return add(NULL, data);
+}
+
+
 void enqueue(Queue* q, int data){//this functions needs fixing
-        q->front = addEnd(q->front, data);
+        Node* newnode = createNode(data);
         if(q->end == NULL){
-                q->end = q->front;
-        }
-        else{
-                q->end = next(q->end);//this is dangerous 
+                q->end = q->front = newnode;
+        } else {
+        q->end->next = newnode;
+        q->end = newnode;
         }
 }
 
