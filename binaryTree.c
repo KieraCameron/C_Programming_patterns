@@ -11,6 +11,30 @@ TreeNode* initTreeNode(){
         return NULL;
 }
 
+void destroyTreeNode(TreeNode* root){
+        if(root == NULL){
+                return;
+        }
+
+        destroyTreeNode(root->left);
+        destroyTreeNode(root->right);
+        free(root);
+        return;
+}
+
+void destroyTree(TreeNode** root){
+        if(*root == NULL){
+                return;
+        }
+
+        destroyTree(&(*root)->left);
+        destroyTree(&(*root)->right);
+        free(*root);
+        root = NULL;
+        return;
+}// although the above function may seem redundant; it shows alternative ways of programming the same function
+
+
 TreeNode* createTreeNode(int data){
         TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
         if(newNode == NULL){// add memory cleanup code
@@ -36,6 +60,17 @@ void insertTreeNode(TreeNode** root, int data){
         }
 
 }
+TreeNode* searchTreeNode(TreeNode* root, int data){
+        while(root!=NULL){
+                if(root->data == data)
+                        return root;
+                else if(root->data > data)
+                        root = root->left;
+                else if(root->data < data)
+                        root = root->right;
+        }
+        return NULL;
+}
 int main(void){
         TreeNode* root = initTreeNode();
         insertTreeNode(&root, 16);
@@ -44,5 +79,9 @@ int main(void){
         printf("%d\n",root->data);
         printf("%d\n",root->left->data);
         printf("%d\n",root->right->data);
+        TreeNode* ptr = searchTreeNode(root, 16);
+        printf("%d\n", ptr->data);
+        destroyTreeNode(root);
+        root = NULL;//good practice to avoid pointer pointing in unwanted spaces
         return 0;
 }
