@@ -7,11 +7,13 @@ int main(){
         //int *ptr = (int *)malloc(sizeof(int) * 5);
         if(ptr == NULL){
                 printf("Allocation Failed");
+                free(ptr);//Deallocate memory before exiting
                 exit(0);
         }
 
         for(int i = 0; i < 5; i++)
                 ptr[i] = i + 1;
+        printf("malloc array: ");
 
         for(int i = 0; i < 5; i++)
                 printf("%2d ", ptr[i]);
@@ -20,9 +22,10 @@ int main(){
         int *newptr = (int *)calloc(5, sizeof(int));
         if(newptr == NULL){
                 printf("Allocation Failed");
+                free(newptr); // Deallocate memory before exiting
                 exit(0);
         }
-        printf("\n");
+        printf("\nCalloc array: ");
         for(int i = 0; i<5; i++)
                 printf("%d ", newptr[i]);
         //the memory allocated using functions malloc() and calloc() is not de-allocated on their own.
@@ -35,12 +38,13 @@ int main(){
 
         int *temp = (int *)realloc(pointer, 10*sizeof(int));
 
-        if(pointer == NULL){
+        if(temp == NULL){//We check the temp pointer if the memory is reallocated or not
                 printf("Memory Reallocation Failed");
+                free(pointer);//We deallocate the original pointer since the realloc failed
                 exit(0);
-        }//the original memory is not deallocated so it might cause fragmentation and memory leaks
+        }
         else{
-                pointer = temp;
+                pointer = temp;//We update the original pointer with the address of the new reallocated memory
         }
         free(pointer);
 
